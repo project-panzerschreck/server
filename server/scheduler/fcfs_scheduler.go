@@ -143,6 +143,11 @@ func (f *fcfsScheduler) startBackend(modelName string) (*backend, error) {
 	cmd := f.ramalama.ServeCommand(ctx, ramalama.ServeArgs{
 		Model: modelName,
 		Port:  back.port,
+		RpcNodes: []ramalama.RpcNode{
+			{
+				Host: "192.168.0.198:50052", // FIXME
+			},
+		},
 	})
 	cmd.Stderr = os.Stderr
 
