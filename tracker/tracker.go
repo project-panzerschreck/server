@@ -79,6 +79,7 @@ func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
 			// has not been changed.
 			if t.RpcServers[r.RemoteAddr].lastSeen.Equal(announceTime) {
 				delete(t.RpcServers, r.RemoteAddr)
+				log.Printf("Removed %s from tracker", r.RemoteAddr)
 			}
 		}),
 	}
