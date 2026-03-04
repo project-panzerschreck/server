@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strings"
 	"sync"
 	"time"
 )
@@ -42,14 +43,32 @@ func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
 	t.Lock()
 	defer t.Unlock()
 
+	port := r.URL.Query().Get("port")
+	if port == "" {
+		http.Error(w, "missing port", http.StatusBadRequest)
+		return
+	}
+
+	ip := r.URL.Query().Get("ip")
+	if ip == "" {
+		// fill with the ip from r.RemoteAddr
+		ip = strings.SplitN(r.RemoteAddr, ":", 2)[0]
+	}
+
+	// todo validate that the IP and port are valid
+
+	clientId := ip + ":" + port
+
+	log.Printf("Announce from %s", r.RemoteAddr)
+
 	// avoid duplicate timers
-	if existingTImer := t.RpcServers[r.RemoteAddr].expiryTimer; existingTImer != nil {
+	if existingTImer := t.RpcServers[clientId].expiryTimer; existingTImer != nil {
 		existingTImer.Stop()
 	}
 
 	announceTime := time.Now()
 
-	t.RpcServers[r.RemoteAddr] = clientInfo{
+	t.RpcServers[clientId] = clientInfo{
 		lastSeen: announceTime,
 		expiryTimer: time.AfterFunc(expiryDuration, func() {
 			t.Lock()
