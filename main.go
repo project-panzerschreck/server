@@ -14,6 +14,7 @@ import (
 	"github.com/wk-y/rama-swap/ramalama"
 	"github.com/wk-y/rama-swap/server"
 	"github.com/wk-y/rama-swap/server/scheduler"
+	"github.com/wk-y/rama-swap/tracker"
 )
 
 const defaultPort = 4917
@@ -22,6 +23,8 @@ const defaultHost = "127.0.0.1"
 const EX_USAGE = 64
 
 func main() {
+	mux := http.NewServeMux()
+
 	args, rest, err := parseArgs(os.Args)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
@@ -64,6 +67,8 @@ func main() {
 		Command: args.Ramalama,
 	}
 	scheduler := scheduler.NewFcfsScheduler(ramalama, 49170, *args.IdleTimeout)
+	tracker := tracker.NewTracker()
+	tracker.AddRoutes(mux)
 	server := server.NewServer(ramalama, scheduler)
 
 	server.ModelNameMangler = func(s string) string {
@@ -99,8 +104,8 @@ func main() {
 	}
 	defer l.Close()
 
-	server.HandleHttp(http.DefaultServeMux)
-	err = http.Serve(l, nil)
+	server.HandleHttp(mux)
+	err = http.Serve(l, mux)
 
 	log.Fatalf("Failed to serve: %v", err)
 }
