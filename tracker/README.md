@@ -18,6 +18,13 @@ The response will be a JSON object with the following fields:
 
 - `interval`: The number of seconds the client should wait between announces.
 
+Example Response:
+```json
+{
+    "interval": 30
+}
+```
+
 ### List Servers
 
 A list of the servers that have announced themselves to the tracker can be retreived from `/servers`.
