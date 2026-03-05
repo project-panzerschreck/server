@@ -59,7 +59,7 @@ func main() {
 				log.Fatalln("RAMALAMA_COMMAND environment variable should not be all whitespace")
 			}
 		} else {
-			args.Ramalama = []string{"ramalama"}
+			args.Ramalama = []string{"llama-server"}
 		}
 	}
 
