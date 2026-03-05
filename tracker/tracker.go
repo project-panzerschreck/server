@@ -79,9 +79,9 @@ func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
 			// there's a possible race condition if the client announces just as the timer expires,
 			// preventing the timer from being stopped. To prevent that, we verify that the last seen time
 			// has not been changed.
-			if t.RpcServers[r.RemoteAddr].lastSeen.Equal(announceTime) {
-				delete(t.RpcServers, r.RemoteAddr)
-				log.Printf("Removed %s from tracker", r.RemoteAddr)
+			if t.RpcServers[clientId].lastSeen.Equal(announceTime) {
+				delete(t.RpcServers, clientId)
+				log.Printf("Removed %s from tracker", clientId)
 			}
 		}),
 	}
