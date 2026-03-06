@@ -61,11 +61,12 @@ func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
 
 	clientId := ip + ":" + port
 
-	log.Printf("Announce from %s", r.RemoteAddr)
-
 	// avoid duplicate timers
 	if existingTimer := t.RpcServers[clientId].expiryTimer; existingTimer != nil {
 		existingTimer.Stop()
+		log.Printf("Reannounce from %s", clientId)
+	} else {
+		log.Printf("New announce from %s", clientId)
 	}
 
 	announceTime := time.Now()
