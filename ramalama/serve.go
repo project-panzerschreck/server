@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os/exec"
 	"slices"
+	"strings"
 )
 
 type ServeArgs struct {
@@ -36,7 +37,12 @@ func (c Ramalama) ServeCommand(ctx context.Context, args ServeArgs) *exec.Cmd {
 
 	cliArgs = append(cliArgs, "--port", fmt.Sprint(args.Port))
 
-	cliArgs = append(cliArgs, "--model", args.Model)
+	// temporary: if model name starts with hf: use -hf to load huggingface model
+	if strings.HasPrefix(args.Model, "hf:") {
+		cliArgs = append(cliArgs, "-hf", args.Model[3:])
+	} else {
+		cliArgs = append(cliArgs, "--model", args.Model)
+	}
 
 	return exec.CommandContext(ctx, c.Command[0], cliArgs...)
 }

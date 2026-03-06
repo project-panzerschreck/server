@@ -22,7 +22,7 @@ type Model struct {
 func (c Ramalama) GetModels() ([]Model, error) {
 	return []Model{
 		{
-			Name: "/home/avocado/Downloads/Qwen3-0.6B-UD-Q4_K_XL.gguf",
+			Name: "hf:unsloth/Qwen3-0.6B-GGUF:UD-Q4_K_XL",
 		},
 	}, nil
 }
