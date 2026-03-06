@@ -101,6 +101,18 @@ func (t *Tracker) ListServers(w http.ResponseWriter, r *http.Request) {
 		Servers []string `json:"servers"`
 	}
 
+	servers := t.GetServers()
+
+	err := json.NewEncoder(w).Encode(response{
+		Servers: servers,
+	})
+
+	if err != nil {
+		log.Printf("Failed to respond to list servers: %v", err)
+	}
+}
+
+func (t *Tracker) GetServers() []string {
 	t.RLock()
 	defer t.RUnlock()
 
@@ -111,11 +123,5 @@ func (t *Tracker) ListServers(w http.ResponseWriter, r *http.Request) {
 
 	slices.Sort(servers)
 
-	err := json.NewEncoder(w).Encode(response{
-		Servers: servers,
-	})
-
-	if err != nil {
-		log.Printf("Failed to respond to list servers: %v", err)
-	}
+	return servers
 }

@@ -66,9 +66,9 @@ func main() {
 	ramalama := llama.Llama{
 		Command: args.Ramalama,
 	}
-	scheduler := scheduler.NewFcfsScheduler(ramalama, 49170, *args.IdleTimeout)
 	tracker := tracker.NewTracker()
 	tracker.AddRoutes(mux)
+	scheduler := scheduler.NewFcfsScheduler(ramalama, 49170, *args.IdleTimeout, tracker)
 	server := server.NewServer(ramalama, scheduler)
 
 	server.ModelNameMangler = func(s string) string {

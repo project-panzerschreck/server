@@ -7,15 +7,18 @@ import (
 	"log"
 	"os"
 	"runtime"
+	"slices"
 	"sync"
 	"time"
 
 	"github.com/wk-y/rama-swap/llama"
+	"github.com/wk-y/rama-swap/tracker"
 )
 
 // fcfsScheduler is a ModelScheduler that implements (roughly) first-come-first-serve
 // access with at most one model loaded at a time.
 type fcfsScheduler struct {
+	tracker     *tracker.Tracker
 	port        int // port to attach the backend to
 	idleTimeout time.Duration
 
@@ -25,12 +28,13 @@ type fcfsScheduler struct {
 	// rules for using the backend properties:
 	// backendCond must be held while changing any of the backend properties
 	// backend may only be changed when backendUsers is 0
-	backendCond    sync.Cond
-	backend        *backend
-	backendModel   string
-	backendUsers   int
-	backendIdleAt  time.Time
-	backendLocking bool
+	backendCond     sync.Cond
+	backend         *backend
+	backendModel    string
+	backendRpcNodes []string
+	backendUsers    int
+	backendIdleAt   time.Time
+	backendLocking  bool
 
 	// cached set of valid model names
 	ramalamaModelsCache     map[string]struct{}
@@ -60,7 +64,13 @@ func (f *fcfsScheduler) Lock(ctx context.Context, model string) (*backend, error
 	f.backendCond.L.Lock()
 	defer f.backendCond.L.Unlock()
 
-	if f.backend != nil && f.backendModel == model {
+	servers := f.tracker.GetServers()
+	if len(servers) == 0 {
+		return nil, errors.New("no servers")
+	}
+
+	// GetServers is sorted so direct comparison is valid
+	if f.backend != nil && f.backendModel == model && slices.Equal(f.backendRpcNodes, servers) {
 		// if it is exited, don't return the backend
 		select {
 		case <-f.backend.Exited:
@@ -81,7 +91,7 @@ func (f *fcfsScheduler) Lock(ctx context.Context, model string) (*backend, error
 		f.backend = nil
 	}
 
-	backend, err := f.startBackend(model)
+	backend, err := f.startBackend(model, servers)
 	if err != nil {
 		return nil, err
 	}
@@ -133,21 +143,22 @@ func (f *fcfsScheduler) modelExists(modelName string) (bool, error) {
 	return ok, nil
 }
 
-func (f *fcfsScheduler) startBackend(modelName string) (*backend, error) {
+func (f *fcfsScheduler) startBackend(modelName string, rpcNodes []string) (*backend, error) {
 	back := &backend{}
 	back.port = f.port
 
 	ctx, cancel := context.WithCancel(context.Background())
 	back.cancel = cancel
 
+	rpc := make([]llama.RpcNode, len(rpcNodes))
+	for i, node := range rpcNodes {
+		rpc[i] = llama.RpcNode{Host: node}
+	}
+
 	cmd := f.ramalama.ServeCommand(ctx, llama.ServeArgs{
-		Model: modelName,
-		Port:  back.port,
-		RpcNodes: []llama.RpcNode{
-			{
-				Host: "192.168.0.198:50052", // FIXME
-			},
-		},
+		Model:    modelName,
+		Port:     back.port,
+		RpcNodes: rpc,
 	})
 	cmd.Stderr = os.Stderr
 
@@ -232,13 +243,14 @@ func (f *fcfsScheduler) startIdleTimeout() {
 	}
 }
 
-func NewFcfsScheduler(ramalama llama.Llama, port int, idleTimeout time.Duration) *fcfsScheduler {
+func NewFcfsScheduler(ramalama llama.Llama, port int, idleTimeout time.Duration, tracker *tracker.Tracker) *fcfsScheduler {
 	scheduler := &fcfsScheduler{
 		ramalama:            ramalama,
 		port:                port,
 		idleTimeout:         idleTimeout,
 		ramalamaModelsCache: map[string]struct{}{},
 		backendCond:         *sync.NewCond(&sync.Mutex{}),
+		tracker:             tracker,
 	}
 
 	if idleTimeout != 0 {
