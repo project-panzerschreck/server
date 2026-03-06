@@ -12,13 +12,18 @@ import (
 )
 
 func main() {
-	serverHost := flag.String("server-ip", "127.0.0.1:4917", "ip:port of the server")
+	tracker := flag.String("tracker", "127.0.0.1:4917", "ip:port of the tracker")
 	rpcPort := flag.Int("port", 1984, "port to run the RPC server on")
 	rpcCommand := flag.String("cmd", "rpc-server", "command to run the RPC server")
 	flag.Parse()
 
+	args := []string{
+		"--port", fmt.Sprint(*rpcPort),
+	}
+	args = append(args, flag.Args()...)
+
 	// start RPC server
-	cmd := exec.Command(*rpcCommand, "--port", fmt.Sprint(*rpcPort))
+	cmd := exec.Command(*rpcCommand, args...)
 	cmd.Stdin = nil
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -26,9 +31,12 @@ func main() {
 		panic(err)
 	}
 
+	// print command
+	log.Printf("Running command: %s %v\n", *rpcCommand, args)
+
 	// start announcement loop
 	go func() {
-		announceUrl := fmt.Sprintf("http://%s/announce?port=%d", *serverHost, *rpcPort)
+		announceUrl := fmt.Sprintf("http://%s/announce?port=%d", *tracker, *rpcPort)
 
 		for {
 			// send announce request
