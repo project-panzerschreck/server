@@ -11,6 +11,9 @@ import (
 	"time"
 )
 
+// time to wait after failed announcement
+const retrySleep = time.Second
+
 func main() {
 	tracker := flag.String("tracker", "127.0.0.1:4917", "ip:port of the tracker")
 	rpcPort := flag.Int("port", 1984, "port to run the RPC server on")
@@ -42,13 +45,17 @@ func main() {
 			// send announce request
 			resp, err := http.Post(announceUrl, "", nil)
 			if err != nil {
-				panic(err)
+				log.Printf("Failed to announce to tracker: %v\n", err)
+				time.Sleep(retrySleep)
+				continue
 			}
 
 			// parse response
 			var response announcementResponse
 			if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
-				panic(err)
+				log.Printf("Failed to parse announcement response: %v\n", err)
+				time.Sleep(retrySleep)
+				continue
 			}
 
 			log.Printf("Announced to server, reannouncing in %v seconds\n", response.Interval)
