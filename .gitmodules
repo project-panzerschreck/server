@@ -1,3 +1,9 @@
 [submodule "llama.cpp"]
 	path = llama.cpp
 	url = https://github.com/project-panzerschreck/llama.cpp.git
+[submodule "llama-rpc-app"]
+	path = llama-rpc-app
+	url = git@github.com:project-panzerschreck/android-app.git
+[submodule "llama-rpc-app-ios"]
+	path = llama-rpc-app-ios
+	url = git@github.com:project-panzerschreck/ios-app.git
