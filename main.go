@@ -44,6 +44,7 @@ func main() {
 	tracker.AddRoutes(mux)
 	scheduler := scheduler.NewFcfsScheduler(ramalama, 49170, *args.IdleTimeout, tracker)
 	server := server.NewServer(ramalama, scheduler)
+	addDebugRoute(mux, tracker)
 
 	server.ModelNameMangler = func(s string) string {
 		return strings.ReplaceAll(s, "/", "_")
