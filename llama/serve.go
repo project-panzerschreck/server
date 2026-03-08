@@ -29,7 +29,7 @@ func (c Llama) ServeCommand(ctx context.Context, args ServeArgs) *exec.Cmd {
 		sep = ","
 	}
 
-	cliArgs = append(cliArgs, "-ngl", "99", "--rpc", nodes)
+	cliArgs = append(cliArgs, "-ngl", "999", "--rpc", nodes)
 
 	if args.Alias != nil {
 		cliArgs = append(cliArgs, "-n", *args.Alias)

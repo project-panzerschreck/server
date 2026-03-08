@@ -1,9 +1,14 @@
 [submodule "llama.cpp"]
-	path = llama.cpp
-	url = https://github.com/project-panzerschreck/llama.cpp.git
+    path = llama.cpp
+    url = https://github.com/project-panzerschreck/llama.cpp.git
+    branch = master
+
 [submodule "llama-rpc-app"]
-	path = llama-rpc-app
-	url = git@github.com:project-panzerschreck/android-app.git
+    path = llama-rpc-app
+    url = git@github.com:project-panzerschreck/android-app.git
+    branch = main
+
 [submodule "llama-rpc-app-ios"]
-	path = llama-rpc-app-ios
-	url = git@github.com:project-panzerschreck/ios-app.git
+    path = llama-rpc-app-ios
+    url = git@github.com:project-panzerschreck/ios-app.git
+    branch = main
