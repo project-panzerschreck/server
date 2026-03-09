@@ -3,3 +3,5 @@
                              specify the ramalama command to use
   -port                      specify the port number to bind to
   -host                      specify the host to bind to
+  -tracker-port              specify the port number to bind the tracker to
+  -tracker-host              specify the host to bind the tracker to

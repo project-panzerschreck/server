@@ -15,6 +15,8 @@ type args struct {
 	Ramalama    []string
 	Port        *int
 	Host        *string
+	TrackerPort *int
+	TrackerHost *string
 	IdleTimeout *time.Duration
 }
 
@@ -75,6 +77,37 @@ func parseArgs(cli []string) (a args, rest []string, err error) {
 			}
 
 			a.Host = &cli[1]
+
+			cli = cli[2:]
+
+		case "-tracker-port":
+			if a.TrackerPort != nil {
+				return args{}, nil, fmt.Errorf("%s may only be passed at most once", cli[0])
+			}
+
+			if len(cli) < 2 {
+				return args{}, nil, fmt.Errorf("expected port number after %s", cli[0])
+			}
+
+			port, err := strconv.Atoi(cli[1])
+			if err != nil {
+				return args{}, nil, fmt.Errorf("invalid port number after %s: %v", cli[0], err)
+			}
+
+			a.TrackerPort = &port
+
+			cli = cli[2:]
+
+		case "-tracker-host":
+			if a.TrackerHost != nil {
+				return args{}, nil, fmt.Errorf("%s may only be passed at most once", cli[0])
+			}
+
+			if len(cli) < 2 {
+				return args{}, nil, fmt.Errorf("expected host after %s", cli[0])
+			}
+
+			a.TrackerHost = &cli[1]
 
 			cli = cli[2:]
 

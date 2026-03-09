@@ -11,6 +11,13 @@ import (
 	"github.com/openai/openai-go/v2/option"
 )
 
+// DeviceStats holds all known memory and performance stats for a single device.
+type DeviceStats struct {
+	ModelBufferMiB   float64
+	KvBufferMiB      float64
+	ComputeBufferMiB float64
+}
+
 type backend struct {
 	sync.RWMutex
 	Ready    chan struct{}
@@ -19,6 +26,33 @@ type backend struct {
 	portLock sync.RWMutex
 	err      error
 	cancel   func()
+
+	// Set at spawn time
+	Model string
+
+	// Filled in by stderr parser as llama-server loads
+	Devices         map[string]*DeviceStats // key: device name e.g. "192.168.1.187:50052" or "CPU"
+	TotalBufferSize float64                 // sum of model buffer MiB across all devices
+
+	// Updated after each inference
+	PromptTokensPerSec float64
+	EvalTokensPerSec   float64
+}
+
+func newBackend(model string) *backend {
+	return &backend{
+		Model:   model,
+		Devices: make(map[string]*DeviceStats),
+	}
+}
+
+func (b *backend) getOrCreateDevice(name string) *DeviceStats {
+	if d, ok := b.Devices[name]; ok {
+		return d
+	}
+	d := &DeviceStats{}
+	b.Devices[name] = d
+	return d
 }
 
 func (b *backend) healthCheck() bool {
@@ -61,4 +95,30 @@ func (b *backend) Proxy() *httputil.ReverseProxy {
 			pr.Out.URL.Scheme = "http"
 		},
 	}
+}
+
+// DebugSnapshot is a point-in-time copy of backend metrics.
+type DebugSnapshot struct {
+	Model              string
+	TotalBufferMiB     float64
+	Devices            map[string]DeviceStats
+	PromptTokensPerSec float64
+	EvalTokensPerSec   float64
+}
+
+func (b *backend) Snapshot() DebugSnapshot {
+	b.RLock()
+	defer b.RUnlock()
+
+	snap := DebugSnapshot{
+		Model:              b.Model,
+		TotalBufferMiB:     b.TotalBufferSize,
+		Devices:            make(map[string]DeviceStats, len(b.Devices)),
+		PromptTokensPerSec: b.PromptTokensPerSec,
+		EvalTokensPerSec:   b.EvalTokensPerSec,
+	}
+	for k, v := range b.Devices {
+		snap.Devices[k] = *v
+	}
+	return snap
 }

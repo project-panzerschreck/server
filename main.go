@@ -47,6 +47,17 @@ func main() {
 		args.Port = &port
 	}
 
+	//defaults (according to android app)
+	if args.TrackerHost == nil {
+		host := "0.0.0.0"
+		args.TrackerHost = &host
+	}
+
+	if args.TrackerPort == nil {
+		port := 50055
+		args.TrackerPort = &port
+	}
+
 	if args.IdleTimeout == nil {
 		timeout := time.Duration(0)
 		args.IdleTimeout = &timeout
@@ -104,7 +115,22 @@ func main() {
 	}
 	defer l.Close()
 
+	log.Printf("Device tracker listening on http://%s:%d\n", *args.TrackerHost, *args.TrackerPort)
+	tl, err := net.Listen("tcp", fmt.Sprintf("%s:%d", *args.TrackerHost, *args.TrackerPort))
+	if err != nil {
+		log.Fatalf("Failed to listen on tracker port: %v", err)
+	}
+	defer tl.Close()
+
 	server.HandleHttp(mux)
+
+	go func() {
+		err := http.Serve(tl, mux)
+		if err != nil {
+			log.Fatalf("Failed to serve tracker: %v", err)
+		}
+	}()
+
 	err = http.Serve(l, mux)
 
 	log.Fatalf("Failed to serve: %v", err)

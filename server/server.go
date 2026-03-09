@@ -48,7 +48,13 @@ func (s *Server) HandleHttp(mux *http.ServeMux) {
 	mux.HandleFunc("/upstream/{model}/{rest...}", s.serveUpstream)
 	mux.HandleFunc("/upstream/{$}", s.serveUpstreamSelect)
 
+	mux.HandleFunc("/api/debug_data", s.handleDebugData)
+
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/" {
+			s.serveDebugUI(w, r)
+			return
+		}
 		log.Println("Unhandled endpoint ", r.URL)
 		w.WriteHeader(http.StatusNotFound)
 	})

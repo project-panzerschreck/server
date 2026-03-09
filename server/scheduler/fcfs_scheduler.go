@@ -1,13 +1,16 @@
 package scheduler
 
 import (
+	"bufio"
 	"context"
 	"errors"
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"runtime"
 	"slices"
+	"strconv"
 	"sync"
 	"time"
 
@@ -144,7 +147,7 @@ func (f *fcfsScheduler) modelExists(modelName string) (bool, error) {
 }
 
 func (f *fcfsScheduler) startBackend(modelName string, rpcNodes []string) (*backend, error) {
-	back := &backend{}
+	back := newBackend(modelName)
 	back.port = f.port
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -160,7 +163,12 @@ func (f *fcfsScheduler) startBackend(modelName string, rpcNodes []string) (*back
 		Port:     back.port,
 		RpcNodes: rpc,
 	})
-	cmd.Stderr = os.Stderr
+
+	stderrPipe, err := cmd.StderrPipe()
+	if err != nil {
+		cancel()
+		return nil, fmt.Errorf("failed to get stderr pipe: %v\n", err)
+	}
 
 	switch runtime.GOOS {
 	case "linux":
@@ -173,7 +181,7 @@ func (f *fcfsScheduler) startBackend(modelName string, rpcNodes []string) (*back
 		log.Println("[WARN] Graceful shutdown of ramalama not supported for OS, switching may not work correctly")
 	}
 
-	err := cmd.Start()
+	err = cmd.Start()
 	if err != nil {
 		cancel()
 		return nil, fmt.Errorf("failed to start ramalama: %v\n", err)
@@ -182,6 +190,93 @@ func (f *fcfsScheduler) startBackend(modelName string, rpcNodes []string) (*back
 	back.Ready = make(chan struct{})
 	back.Exited = make(chan struct{})
 
+	// Parse stderr for per-device metrics and inference timings.
+	// Uses a 4 MiB scanner buffer because some llama-server lines (token lists) are very long
+	// and would cause the default 64 KiB bufio.Scanner to error out mid-stream, dropping all
+	// subsequent lines including the buffer-size lines we care about.
+	go func() {
+		scanner := bufio.NewScanner(stderrPipe)
+		scanner.Buffer(make([]byte, 4*1024*1024), 4*1024*1024)
+
+		// load_tensors: RPC0[192.168.1.187:50052] model buffer size =   438.60 MiB
+		// load_tensors:   CPU_Mapped model buffer size =    20.51 MiB
+		reModel := regexp.MustCompile(`load_tensors:\s*(?:RPC\d+\[([\d\.]+:\d+)\]|CPU_Mapped)\s*model buffer size =\s*([\d\.]+)\s*MiB`)
+
+		// llama_kv_cache: RPC0[192.168.1.187:50052] KV buffer size =    44.00 MiB
+		reKv := regexp.MustCompile(`llama_kv_cache:\s*(?:RPC\d+\[([\d\.]+:\d+)\]|.*Host)\s*KV buffer size =\s*([\d\.]+)\s*MiB`)
+
+		// sched_reserve: RPC0[192.168.1.187:50052] compute buffer size =    66.50 MiB
+		reCompute := regexp.MustCompile(`sched_reserve:\s*(?:RPC\d+\[([\d\.]+:\d+)\]|.*CPU)\s*compute buffer size =\s*([\d\.]+)\s*MiB`)
+
+		// prompt eval time =    3227.58 ms /    24 tokens ... 7.44 tokens per second)
+		// eval time =    3661.85 ms /     9 tokens ... 2.46 tokens per second)
+		rePromptTps := regexp.MustCompile(`prompt eval time =.*?([\d\.]+)\s*tokens per second`)
+		reEvalTps := regexp.MustCompile(`^\s*eval time =.*?([\d\.]+)\s*tokens per second`)
+
+		for scanner.Scan() {
+			line := scanner.Text()
+			fmt.Fprintln(os.Stderr, line)
+
+			// Model buffer sizes
+			if m := reModel.FindStringSubmatch(line); m != nil {
+				device := m[1] // empty string if CPU_Mapped
+				if device == "" {
+					device = "CPU"
+				}
+				if size, err2 := strconv.ParseFloat(m[2], 64); err2 == nil {
+					back.Lock()
+					back.getOrCreateDevice(device).ModelBufferMiB = size
+					back.TotalBufferSize += size
+					back.Unlock()
+				}
+			}
+
+			// KV cache buffer sizes
+			if m := reKv.FindStringSubmatch(line); m != nil {
+				device := m[1]
+				if device == "" {
+					device = "CPU"
+				}
+				if size, err2 := strconv.ParseFloat(m[2], 64); err2 == nil {
+					back.Lock()
+					back.getOrCreateDevice(device).KvBufferMiB = size
+					back.Unlock()
+				}
+			}
+
+			// Compute buffer sizes
+			if m := reCompute.FindStringSubmatch(line); m != nil {
+				device := m[1]
+				if device == "" {
+					device = "CPU"
+				}
+				if size, err2 := strconv.ParseFloat(m[2], 64); err2 == nil {
+					back.Lock()
+					back.getOrCreateDevice(device).ComputeBufferMiB = size
+					back.Unlock()
+				}
+			}
+
+			// Live throughput from slot timing lines
+			if m := rePromptTps.FindStringSubmatch(line); m != nil {
+				if tps, err2 := strconv.ParseFloat(m[1], 64); err2 == nil {
+					back.Lock()
+					back.PromptTokensPerSec = tps
+					back.Unlock()
+				}
+			}
+			if m := reEvalTps.FindStringSubmatch(line); m != nil {
+				if tps, err2 := strconv.ParseFloat(m[1], 64); err2 == nil {
+					back.Lock()
+					back.EvalTokensPerSec = tps
+					back.Unlock()
+				}
+			}
+		}
+		if err2 := scanner.Err(); err2 != nil {
+			log.Printf("stderr scanner error: %v", err2)
+		}
+	}()
 	// waits for ready
 	go func() {
 		defer close(back.Ready)
@@ -257,6 +352,24 @@ func NewFcfsScheduler(ramalama llama.Llama, port int, idleTimeout time.Duration,
 		go scheduler.startIdleTimeout()
 	}
 	return scheduler
+}
+
+func (f *fcfsScheduler) GetTracker() *tracker.Tracker {
+	return f.tracker
+}
+
+func (f *fcfsScheduler) GetDebugInfo() (snap DebugSnapshot, port int) {
+	f.backendCond.L.Lock()
+	defer f.backendCond.L.Unlock()
+
+	if f.backend != nil {
+		snap = f.backend.Snapshot()
+
+		f.backend.portLock.RLock()
+		port = f.backend.port
+		f.backend.portLock.RUnlock()
+	}
+	return
 }
 
 var _ ModelScheduler = (*fcfsScheduler)(nil)
