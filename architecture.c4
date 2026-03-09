@@ -10,11 +10,11 @@ model {
         description 'User of the system'
         -> webui 'uses'
     }
+    webui = ui 'OpenWebUI' {
+        description 'Interface to the server'
+        -> openai_api 'uses'
+    }
     server = node 'Server' {
-        webui = ui 'OpenWebUI' {
-            description 'Interface to the server'
-            -> openai_api 'uses'
-        }
         openai_api = service 'OpenAI API Service' {
             description 'Industry standard API for external use'
             -> llama_sever 'uses'
