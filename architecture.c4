@@ -31,10 +31,10 @@ model {
             -> linux_client.rpc_server 'uses'
         }
         tracker = service 'Tracker Service' {
-            description 'Traciks phone availabilty'
+            description 'Tracks node availabilty'
         }
     }
-    phone = node 'Phone Client' {
+    phone = node 'Phone Node' {
         description 'Android phone running llama rpc server'
         rpc_server = service 'RPC Server' {
             description 'llama.cpp RPC server for inference'
@@ -44,7 +44,7 @@ model {
             -> tracker 'announces to'
         }
     }
-    linux_client = node 'Linux Client' {
+    linux_client = node 'Linux Node' {
         description 'Linux client running llama rpc server'
         rpc_server = service 'RPC Server' {
             description 'llama.cpp RPC server for inference'
