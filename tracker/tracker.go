@@ -29,12 +29,13 @@ type clientInfo struct {
 }
 
 type RpcServerInfo struct {
-	Ip          string    `json:"ip"`
-	Port        int       `json:"port"`
-	LastSeen    time.Time `json:"last_seen"`
-	MaxSize     int64     `json:"max_size"`
-	Battery     float64   `json:"battery"`
-	Temperature float64   `json:"temperature"`
+	Ip            string    `json:"ip"`
+	Port          int       `json:"port"`
+	LastSeen      time.Time `json:"last_seen"`
+	HardwareModel string    `json:"hardware_model"` // the hardware's model name
+	MaxSize       int64     `json:"max_size"`
+	Battery       float64   `json:"battery"`
+	Temperature   float64   `json:"temperature"`
 }
 
 func NewTracker() *Tracker {
@@ -75,6 +76,8 @@ func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
 		ip = strings.SplitN(r.RemoteAddr, ":", 2)[0]
 	}
 
+	hardwareModel := r.URL.Query().Get("model")
+
 	var maxSize int64 = -1
 	if maxSizeStr := r.URL.Query().Get("max_size"); maxSizeStr != "" {
 		maxSize, _ = strconv.ParseInt(maxSizeStr, 10, 64)
@@ -106,12 +109,13 @@ func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
 
 	t.RpcServers[clientId] = clientInfo{
 		RpcServerInfo: RpcServerInfo{
-			LastSeen:    announceTime,
-			Ip:          ip,
-			Port:        portNum,
-			MaxSize:     maxSize,
-			Battery:     battery,
-			Temperature: temperature,
+			LastSeen:      announceTime,
+			Ip:            ip,
+			Port:          portNum,
+			HardwareModel: hardwareModel,
+			MaxSize:       maxSize,
+			Battery:       battery,
+			Temperature:   temperature,
 		},
 		expiryTimer: time.AfterFunc(expiryDuration, func() {
 			t.Lock()
