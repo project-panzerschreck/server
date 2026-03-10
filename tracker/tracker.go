@@ -3,6 +3,7 @@ package tracker
 import (
 	"encoding/json"
 	"log"
+	"math"
 	"net/http"
 	"sort"
 	"strconv"
@@ -28,9 +29,12 @@ type clientInfo struct {
 }
 
 type RpcServerInfo struct {
-	Ip       string    `json:"ip"`
-	Port     int       `json:"port"`
-	LastSeen time.Time `json:"last_seen"`
+	Ip          string    `json:"ip"`
+	Port        int       `json:"port"`
+	LastSeen    time.Time `json:"last_seen"`
+	MaxSize     int64     `json:"max_size"`
+	Battery     float64   `json:"battery"`
+	Temperature float64   `json:"temperature"`
 }
 
 func NewTracker() *Tracker {
@@ -70,6 +74,21 @@ func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
 		ip = strings.SplitN(r.RemoteAddr, ":", 2)[0]
 	}
 
+	var maxSize int64 = -1
+	if maxSizeStr := r.URL.Query().Get("max_size"); maxSizeStr != "" {
+		maxSize, _ = strconv.ParseInt(maxSizeStr, 10, 64)
+	}
+
+	var battery float64 = math.NaN()
+	if batteryStr := r.URL.Query().Get("battery"); batteryStr != "" {
+		battery, _ = strconv.ParseFloat(batteryStr, 64)
+	}
+
+	var temperature float64 = math.NaN()
+	if temperatureStr := r.URL.Query().Get("temperature"); temperatureStr != "" {
+		temperature, _ = strconv.ParseFloat(temperatureStr, 64)
+	}
+
 	// todo: validate ip
 
 	clientId := ip + ":" + port
@@ -86,9 +105,12 @@ func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
 
 	t.RpcServers[clientId] = clientInfo{
 		RpcServerInfo: RpcServerInfo{
-			LastSeen: announceTime,
-			Ip:       ip,
-			Port:     portNum,
+			LastSeen:    announceTime,
+			Ip:          ip,
+			Port:        portNum,
+			MaxSize:     maxSize,
+			Battery:     battery,
+			Temperature: temperature,
 		},
 		expiryTimer: time.AfterFunc(expiryDuration, func() {
 			t.Lock()
