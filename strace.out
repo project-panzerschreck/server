@@ -1,0 +1,684 @@
+55997 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7a755b916000
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v3/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v3/", 0x7ffdbce2f4f0, 0) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v2/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v2/", 0x7ffdbce2f4f0, 0) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/", {st_mode=S_IFDIR|0755, st_size=12288, ...}, 0) = 0
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/glibc-hwcaps/x86-64-v3/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/glibc-hwcaps/x86-64-v3/", 0x7ffdbce2f4f0, 0) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/glibc-hwcaps/x86-64-v2/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/glibc-hwcaps/x86-64-v2/", 0x7ffdbce2f4f0, 0) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libssl.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+55997 fstat(3, {st_mode=S_IFREG|0644, st_size=90195, ...}) = 0
+55997 mmap(NULL, 90195, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7a755b8ff000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libssl.so.3", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0644, st_size=696512, ...}) = 0
+55997 mmap(NULL, 694384, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755b855000
+55997 mmap(0x7a755b873000, 401408, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e000) = 0x7a755b873000
+55997 mmap(0x7a755b8d5000, 114688, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x80000) = 0x7a755b8d5000
+55997 mmap(0x7a755b8f1000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x9c000) = 0x7a755b8f1000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libcrypto.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libcrypto.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libcrypto.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libcrypto.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libcrypto.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libcrypto.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libcrypto.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libcrypto.so.3", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libcrypto.so.3", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0644, st_size=5309400, ...}) = 0
+55997 mmap(NULL, 5323728, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755b200000
+55997 mmap(0x7a755b2b3000, 3358720, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xb3000) = 0x7a755b2b3000
+55997 mmap(0x7a755b5e7000, 831488, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3e7000) = 0x7a755b5e7000
+55997 mmap(0x7a755b6b2000, 389120, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4b1000) = 0x7a755b6b2000
+55997 mmap(0x7a755b711000, 11216, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7a755b711000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libmtmd.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libmtmd.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libmtmd.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libmtmd.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0775, st_size=943248, ...}) = 0
+55997 mmap(NULL, 861200, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755b782000
+55997 mmap(0x7a755b791000, 692224, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xf000) = 0x7a755b791000
+55997 mmap(0x7a755b83a000, 98304, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xb8000) = 0x7a755b83a000
+55997 mmap(0x7a755b852000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xd0000) = 0x7a755b852000
+55997 mmap(0x7a755b854000, 1040, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7a755b854000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libllama.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libllama.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libllama.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libllama.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0775, st_size=3195832, ...}) = 0
+55997 mmap(NULL, 2903544, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755ae00000
+55997 mmap(0x7a755ae62000, 1904640, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x62000) = 0x7a755ae62000
+55997 mmap(0x7a755b033000, 430080, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x233000) = 0x7a755b033000
+55997 mmap(0x7a755b09c000, 40960, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x29b000) = 0x7a755b09c000
+55997 mmap(0x7a755b0a6000, 126456, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7a755b0a6000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libggml.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libggml.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libggml.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libggml.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0775, st_size=55160, ...}) = 0
+55997 mmap(NULL, 45776, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755b776000
+55997 mmap(0x7a755b779000, 24576, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000) = 0x7a755b779000
+55997 mmap(0x7a755b77f000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x9000) = 0x7a755b77f000
+55997 mmap(0x7a755b780000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xa000) = 0x7a755b780000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libggml-base.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libggml-base.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libggml-base.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libggml-base.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0775, st_size=723544, ...}) = 0
+55997 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7a755b774000
+55997 mmap(NULL, 667920, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755b15c000
+55997 mmap(0x7a755b16f000, 450560, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x13000) = 0x7a755b16f000
+55997 mmap(0x7a755b1dd000, 126976, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x81000) = 0x7a755b1dd000
+55997 mmap(0x7a755b1fc000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x9f000) = 0x7a755b1fc000
+55997 mmap(0x7a755b1ff000, 272, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7a755b1ff000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0644, st_size=2592224, ...}) = 0
+55997 mmap(NULL, 2609472, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755aa00000
+55997 mmap(0x7a755aa9d000, 1343488, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x9d000) = 0x7a755aa9d000
+55997 mmap(0x7a755abe5000, 552960, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e5000) = 0x7a755abe5000
+55997 mmap(0x7a755ac6c000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x26b000) = 0x7a755ac6c000
+55997 mmap(0x7a755ac7a000, 12608, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7a755ac7a000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0644, st_size=952616, ...}) = 0
+55997 mmap(NULL, 950296, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755ad17000
+55997 mmap(0x7a755ad27000, 520192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x10000) = 0x7a755ad27000
+55997 mmap(0x7a755ada6000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x8f000) = 0x7a755ada6000
+55997 mmap(0x7a755adfe000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xe7000) = 0x7a755adfe000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0644, st_size=183024, ...}) = 0
+55997 mmap(NULL, 185256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755b746000
+55997 mmap(0x7a755b74a000, 147456, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000) = 0x7a755b74a000
+55997 mmap(0x7a755b76e000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x7a755b76e000
+55997 mmap(0x7a755b772000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2b000) = 0x7a755b772000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+55997 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+55997 fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+55997 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+55997 mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755a600000
+55997 mmap(0x7a755a628000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x7a755a628000
+55997 mmap(0x7a755a7b0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000) = 0x7a755a7b0000
+55997 mmap(0x7a755a7ff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000) = 0x7a755a7ff000
+55997 mmap(0x7a755a805000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7a755a805000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libggml-cpu.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libggml-cpu.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libggml-cpu.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libggml-cpu.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0775, st_size=1047184, ...}) = 0
+55997 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7a755b744000
+55997 mmap(NULL, 1520864, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755a88c000
+55997 mmap(0x7a755a89d000, 778240, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x11000) = 0x7a755a89d000
+55997 mmap(0x7a755a95b000, 122880, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xcf000) = 0x7a755a95b000
+55997 mmap(0x7a755a979000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xed000) = 0x7a755a979000
+55997 mmap(0x7a755a97b000, 541920, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7a755a97b000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libggml-rpc.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libggml-rpc.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libggml-rpc.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libggml-rpc.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0775, st_size=131328, ...}) = 0
+55997 mmap(NULL, 108304, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755b729000
+55997 mmap(0x7a755b72f000, 61440, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6000) = 0x7a755b72f000
+55997 mmap(0x7a755b73e000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x15000) = 0x7a755b73e000
+55997 mmap(0x7a755b742000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x18000) = 0x7a755b742000
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/usr/lib/gcc/x86_64-linux-gnu/13/glibc-hwcaps/x86-64-v3/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/usr/lib/gcc/x86_64-linux-gnu/13/glibc-hwcaps/x86-64-v3/", 0x7ffdbce2f350, 0) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/usr/lib/gcc/x86_64-linux-gnu/13/glibc-hwcaps/x86-64-v2/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/usr/lib/gcc/x86_64-linux-gnu/13/glibc-hwcaps/x86-64-v2/", 0x7ffdbce2f350, 0) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/usr/lib/gcc/x86_64-linux-gnu/13/", {st_mode=S_IFDIR|0755, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+55997 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgomp.so.1", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0644, st_size=352304, ...}) = 0
+55997 mmap(NULL, 350736, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7a755b106000
+55997 mmap(0x7a755b111000, 245760, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xb000) = 0x7a755b111000
+55997 mmap(0x7a755b14d000, 53248, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x47000) = 0x7a755b14d000
+55997 mmap(0x7a755b15a000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x54000) = 0x7a755b15a000
+55997 close(3)                          = 0
+55997 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7a755b727000
+55997 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7a755b725000
+55997 mmap(NULL, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7a755b71f000
+55997 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7a755b71d000
+55997 mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7a755b71a000
+55997 openat(AT_FDCWD, "/sys/devices/system/cpu/possible", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "0-27\n", 1024)           = 5
+55997 close(3)                          = 0
+55997 ioctl(1, TCGETS, {c_iflag=BRKINT|ICRNL|IXON|IXANY|IMAXBEL|IUTF8, c_oflag=NL0|CR0|TAB0|BS0|VT0|FF0|OPOST|ONLCR, c_cflag=B38400|CS8|CREAD|HUPCL, c_lflag=ISIG|ICANON|ECHO|ECHOE|ECHOK|IEXTEN|ECHOCTL|ECHOKE, ...}) = 0
+55997 ioctl(2, TCGETS, {c_iflag=BRKINT|ICRNL|IXON|IXANY|IMAXBEL|IUTF8, c_oflag=NL0|CR0|TAB0|BS0|VT0|FF0|OPOST|ONLCR, c_cflag=B38400|CS8|CREAD|HUPCL, c_lflag=ISIG|ICANON|ECHO|ECHOE|ECHOK|IEXTEN|ECHOCTL|ECHOKE, ...}) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48cec50 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48cec50 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48cec50 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48cec50 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-blas.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-blas.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-zendnn.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-zendnn.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cann.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-cann.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cuda.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-cuda.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-hip.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-hip.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-metal.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-metal.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/proc/cpuinfo", O_RDONLY) = 3
+55997 fstat(3, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+55997 read(3, "processor\t: 0\nvendor_id\t: Genuin"..., 1024) = 1024
+55997 close(3)                          = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0775, st_size=131328, ...}) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-sycl.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-sycl.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-vulkan.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-vulkan.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-virtgpu.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-virtgpu.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-opencl.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-opencl.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-hexagon.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-hexagon.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-musa.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/libggml-musa.so", 0x7ffdbce25fb0, 0) = -1 ENOENT (No such file or directory)
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 103 entries */, 32768) = 3976
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so.0", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libmtmd.so.0", {st_mode=S_IFREG|0775, st_size=943248, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so.0", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libllama.so", {st_mode=S_IFREG|0775, st_size=3195832, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so.0", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-rpc.so.0", {st_mode=S_IFREG|0775, st_size=131328, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-base.so", {st_mode=S_IFREG|0775, st_size=723544, ...}, 0) = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml.so.0", {st_mode=S_IFREG|0775, st_size=55160, ...}, 0) = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+55997 fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+55997 fcntl(3, F_GETFL)                 = 0x18000 (flags O_RDONLY|O_LARGEFILE|O_DIRECTORY)
+55997 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+55997 getdents64(3, 0x6361e48d7d40 /* 24 entries */, 32768) = 760
+55997 getdents64(3, 0x6361e48d7d40 /* 0 entries */, 32768) = 0
+55997 close(3)                          = 0
+55997 newfstatat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", {st_mode=S_IFREG|0775, st_size=1047184, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/home/angela/Code/SWAG/server/llama.cpp/build/bin/libggml-cpu.so", O_RDONLY|O_CLOEXEC) = 3
+55997 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55997 fstat(3, {st_mode=S_IFREG|0775, st_size=1047184, ...}) = 0
+55997 close(3)                          = 0
+55997 socket(AF_INET, SOCK_STREAM, IPPROTO_IP) = 3
+55997 setsockopt(3, SOL_TCP, TCP_NODELAY, [1], 4) = 0
+55997 newfstatat(AT_FDCWD, "/etc/resolv.conf", {st_mode=S_IFREG|0644, st_size=931, ...}, 0) = 0
+55997 openat(AT_FDCWD, "/etc/host.conf", O_RDONLY|O_CLOEXEC) = 4
+55997 fstat(4, {st_mode=S_IFREG|0644, st_size=92, ...}) = 0
+55997 read(4, "# The \"order\" line is only used "..., 4096) = 92
+55997 read(4, "", 4096)                 = 0
+55997 close(4)                          = 0
+55997 openat(AT_FDCWD, "/etc/resolv.conf", O_RDONLY|O_CLOEXEC) = 4
+55997 fstat(4, {st_mode=S_IFREG|0644, st_size=931, ...}) = 0
+55997 read(4, "# This is /run/systemd/resolve/s"..., 4096) = 931
+55997 read(4, "", 4096)                 = 0
+55997 fstat(4, {st_mode=S_IFREG|0644, st_size=931, ...}) = 0
+55997 close(4)                          = 0
+55997 connect(3, {sa_family=AF_INET, sin_port=htons(50052), sin_addr=inet_addr("127.0.0.1")}, 16) = 0
+55997 sendto(3, "\16", 1, 0, NULL, 0)   = 1
+55997 sendto(3, "\0\0\0\0\0\0\0\0", 8, 0, NULL, 0) = 8
+55997 recvfrom(3, "\3\0\0\0", 8, 0, NULL, NULL) = 4
+55997 recvfrom(3, "\3\6\0", 4, 0, NULL, NULL) = 3
+55997 recvfrom(3, "", 1, 0, NULL, NULL) = 0
+55997 write(2, "/home/angela/Code/SWAG/server/ll"..., 128) = 128
+55997 write(2, "onse\n", 5)             = 5
+55997 openat(AT_FDCWD, "/proc/self/status", O_RDONLY) = 4
+55997 fstat(4, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+55997 read(4, "Name:\tllama-server\nUmask:\t0002\nS"..., 1024) = 1024
+55997 close(4)                          = 0
+55997 --- SIGABRT {si_signo=SIGABRT, si_code=SI_TKILL, si_pid=55997, si_uid=1000} ---
+55997 +++ killed by SIGABRT (core dumped) +++

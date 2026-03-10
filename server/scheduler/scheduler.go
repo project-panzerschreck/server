@@ -2,9 +2,15 @@ package scheduler
 
 import (
 	"context"
+	"errors"
 
 	"github.com/wk-y/rama-swap/tracker"
 )
+
+// ErrModelLoading is returned by Lock when the requested backend is still
+// starting up.  Callers should treat this as a transient condition and retry
+// after a short delay (the HTTP handlers return 503 + Retry-After for this).
+var ErrModelLoading = errors.New("model is loading")
 
 type ModelScheduler interface {
 	// Lock waits for the model to be ready.

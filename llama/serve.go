@@ -30,6 +30,9 @@ func (c Llama) ServeCommand(ctx context.Context, args ServeArgs) *exec.Cmd {
 	}
 
 	cliArgs = append(cliArgs, "-ngl", "999", "--rpc", nodes)
+	// Keep context modest and KV cache on host CPU to avoid OOM on low-RAM RPC phones.
+	// The phones only handle weight tensors; the KV cache doesn't need to live on them.
+	cliArgs = append(cliArgs, "-c", "4096", "--no-kv-offload")
 
 	if args.Alias != nil {
 		cliArgs = append(cliArgs, "-n", *args.Alias)

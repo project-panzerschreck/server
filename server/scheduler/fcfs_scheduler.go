@@ -6,12 +6,15 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"net"
 	"os"
 	"regexp"
 	"runtime"
 	"slices"
 	"strconv"
+	"strings"
 	"sync"
+	"syscall"
 	"time"
 
 	"github.com/wk-y/rama-swap/llama"
@@ -44,19 +47,38 @@ type fcfsScheduler struct {
 	ramalamaModelsCacheLock sync.Mutex
 }
 
+// decrementBackendUsers decrements backendUsers for the given backend if it is
+// still the active one, broadcasts, and records the idle time.
+func (f *fcfsScheduler) decrementBackendUsers(back *backend) {
+	f.backendCond.L.Lock()
+	defer f.backendCond.L.Unlock()
+	if f.backend == back {
+		f.backendUsers--
+		if f.backendUsers == 0 {
+			f.backendIdleAt = time.Now()
+		}
+	}
+	f.backendCond.Broadcast()
+}
+
 // Lock implements ModelScheduler.
+//
+// It blocks until the requested backend is ready, then returns it with its
+// user-count incremented.  Call Unlock when done.
+//
+// Returns ErrModelLoading if ctx is cancelled while the model is loading
+// (e.g. the HTTP client disconnected) — the backend keeps loading in the
+// background and the next call will either wait again or return immediately
+// once ready.  Returns a plain error if the backend exits before becoming
+// ready or if some other permanent failure occurs.
 func (f *fcfsScheduler) Lock(ctx context.Context, model string) (*backend, error) {
 	exists, err := f.modelExists(model)
 	if err != nil {
 		return nil, err
 	}
-
 	if !exists {
 		return nil, errors.New("nonexistent model")
 	}
-
-	f.lock.Lock()
-	defer f.lock.Unlock()
 
 	select {
 	case <-ctx.Done():
@@ -64,49 +86,92 @@ func (f *fcfsScheduler) Lock(ctx context.Context, model string) (*backend, error
 	default:
 	}
 
+	// --- Critical section: find or start the backend, claim a user slot. ---
+	// f.lock serialises concurrent attempts to start/replace the backend.
+	// f.backendCond.L protects all backend fields.
+	// Both are released before the potentially long wait for Ready below.
+	f.lock.Lock()
 	f.backendCond.L.Lock()
-	defer f.backendCond.L.Unlock()
 
 	servers := f.tracker.GetServers()
 	if len(servers) == 0 {
+		f.backendCond.L.Unlock()
+		f.lock.Unlock()
 		return nil, errors.New("no servers")
 	}
 
-	// GetServers is sorted so direct comparison is valid
+	var back *backend
+
+	// Reuse the existing backend if it matches and hasn't exited.
+	// GetServers is sorted so direct slice comparison is valid.
 	if f.backend != nil && f.backendModel == model && slices.Equal(f.backendRpcNodes, servers) {
-		// if it is exited, don't return the backend
 		select {
 		case <-f.backend.Exited:
+			// Exited — fall through to restart below.
 		default:
+			// Still alive (may still be loading): claim a user slot so the
+			// idle-timeout goroutine cannot evict it while we wait.
+			back = f.backend
 			f.backendUsers++
 			f.backendCond.Broadcast()
-			return f.backend, nil
 		}
 	}
 
-	for f.backendUsers > 0 {
-		f.backendCond.Wait()
+	if back == nil {
+		// Wait for any current users to drain before we replace the backend.
+		for f.backendUsers > 0 {
+			f.backendCond.Wait()
+		}
+		if f.backend != nil {
+			f.backend.cancel()
+			// <-f.backend.Exited is fast here: cancel() sent SIGINT and llama-server
+			// is expected to exit within a few seconds.
+			<-f.backend.Exited
+			f.backend = nil
+		}
+		newBackend, startErr := f.startBackend(model, servers)
+		if startErr != nil {
+			f.backendCond.L.Unlock()
+			f.lock.Unlock()
+			return nil, startErr
+		}
+		f.backend = newBackend
+		f.backendModel = model
+		f.backendRpcNodes = servers
+		back = newBackend
+		f.backendUsers++
+		f.backendCond.Broadcast()
+		log.Printf("Backend started for model %s with %d RPC nodes", model, len(servers))
 	}
 
-	if f.backend != nil {
-		f.backend.cancel()
-		<-f.backend.Exited
-		f.backend = nil
-	}
+	// Release both locks BEFORE the potentially very long wait for Ready
+	// (~minutes over Wi-Fi).  Other requests can reach the reuse path above
+	// and join the wait concurrently.
+	f.backendCond.L.Unlock()
+	f.lock.Unlock()
 
-	backend, err := f.startBackend(model, servers)
-	if err != nil {
-		return nil, err
-	}
-	f.backend = backend
-	f.backendModel = model
-
+	// --- Wait for backend to become ready (no locks held) ---
 	select {
 	case <-ctx.Done():
-		return nil, errors.New("context cancelled")
-	case <-backend.Ready:
-		f.backendUsers++
-		return f.backend, nil
+		// HTTP client disconnected or request timed out.  The backend keeps
+		// loading — the next request will come back and wait again.
+		f.decrementBackendUsers(back)
+		return nil, ErrModelLoading
+
+	case <-back.Exited:
+		// Backend process died before it became ready.
+		f.decrementBackendUsers(back)
+		return nil, fmt.Errorf("backend exited during startup: %v", back.Err())
+
+	case <-back.Ready:
+		// Double-check: Ready and Exited may close at the same instant.
+		select {
+		case <-back.Exited:
+			f.decrementBackendUsers(back)
+			return nil, fmt.Errorf("backend exited during startup: %v", back.Err())
+		default:
+			return back, nil
+		}
 	}
 }
 
@@ -123,13 +188,26 @@ func (f *fcfsScheduler) Unlock(backend *backend) {
 	}
 }
 
+// modelNameVariants returns the model name plus common prefix variants to check against the ramalama cache.
+// This handles the case where a client sends "unsloth/foo" but ramalama stores "hf:unsloth/foo".
+func modelNameVariants(name string) []string {
+	const hfPrefix = "hf:"
+	if strings.HasPrefix(name, hfPrefix) {
+		// Client sent hf:..., also try without prefix
+		return []string{name, strings.TrimPrefix(name, hfPrefix)}
+	}
+	// Client sent bare name, also try with hf: prefix
+	return []string{name, hfPrefix + name}
+}
+
 func (f *fcfsScheduler) modelExists(modelName string) (bool, error) {
 	f.ramalamaModelsCacheLock.Lock()
 	defer f.ramalamaModelsCacheLock.Unlock()
 
-	_, ok := f.ramalamaModelsCache[modelName]
-	if ok {
-		return true, nil
+	for _, v := range modelNameVariants(modelName) {
+		if _, ok := f.ramalamaModelsCache[v]; ok {
+			return true, nil
+		}
 	}
 
 	models, err := f.ramalama.GetModels()
@@ -142,11 +220,54 @@ func (f *fcfsScheduler) modelExists(modelName string) (bool, error) {
 		f.ramalamaModelsCache[model.Name] = struct{}{}
 	}
 
-	_, ok = f.ramalamaModelsCache[modelName]
-	return ok, nil
+	for _, v := range modelNameVariants(modelName) {
+		if _, ok := f.ramalamaModelsCache[v]; ok {
+			return true, nil
+		}
+	}
+	return false, nil
+}
+
+func (f *fcfsScheduler) waitForNodes(rpcNodes []string) ([]string, error) {
+	var reachable []string
+	for _, node := range rpcNodes {
+		log.Printf("Checking connectivity to RPC node %s...\n", node)
+		success := false
+		for i := 0; i < 5; i++ {
+			conn, err := net.DialTimeout("tcp", node, 2*time.Second)
+			if err == nil {
+				conn.Close()
+				success = true
+				break
+			}
+			log.Printf("Node %s not reachable yet, retrying... (%d/5)\n", node, i+1)
+			time.Sleep(2 * time.Second)
+		}
+		if !success {
+			log.Printf("node %s is not reachable after wait, dropping it", node)
+		} else {
+			reachable = append(reachable, node)
+		}
+	}
+
+	if len(reachable) == 0 {
+		return nil, fmt.Errorf("no RPC nodes are reachable")
+	}
+
+	return reachable, nil
 }
 
 func (f *fcfsScheduler) startBackend(modelName string, rpcNodes []string) (*backend, error) {
+	// Filter to only nodes that are currently TCP-reachable before handing
+	// them to llama-server.  A node that is in the tracker but whose RPC port
+	// is not yet listening would cause llama-server to block indefinitely
+	// inside ggml-rpc's socket_connect() / check_server_version().
+	reachable, err := f.waitForNodes(rpcNodes)
+	if err != nil {
+		return nil, fmt.Errorf("no reachable RPC nodes: %w", err)
+	}
+	rpcNodes = reachable
+
 	back := newBackend(modelName)
 	back.port = f.port
 
@@ -164,14 +285,26 @@ func (f *fcfsScheduler) startBackend(modelName string, rpcNodes []string) (*back
 		RpcNodes: rpc,
 	})
 
+	log.Printf("Starting ramalama with command: %v %v\n", cmd.Path, cmd.Args)
+
 	stderrPipe, err := cmd.StderrPipe()
 	if err != nil {
 		cancel()
 		return nil, fmt.Errorf("failed to get stderr pipe: %v\n", err)
 	}
 
+	stdoutPipe, err := cmd.StdoutPipe()
+	if err != nil {
+		cancel()
+		return nil, fmt.Errorf("failed to get stdout pipe: %v\n", err)
+	}
+
 	switch runtime.GOOS {
 	case "linux":
+		// Ensure the child is killed automatically if the Go parent process dies
+		// (e.g. SIGKILL). Without this, llama-server processes survive parent
+		// death and occupy the RPC node connections and port on the next run.
+		cmd.SysProcAttr = &syscall.SysProcAttr{Pdeathsig: syscall.SIGKILL}
 		// By default, Go sends SIGKILL, which causes ramalama to exit without stopping the container.
 		// Instead, let ramalama gracefully exit by sending SIGINT
 		cmd.Cancel = func() error {
@@ -277,6 +410,15 @@ func (f *fcfsScheduler) startBackend(modelName string, rpcNodes []string) (*back
 			log.Printf("stderr scanner error: %v", err2)
 		}
 	}()
+
+	// Capture stdout as well
+	go func() {
+		scanner := bufio.NewScanner(stdoutPipe)
+		for scanner.Scan() {
+			fmt.Fprintln(os.Stderr, scanner.Text())
+		}
+	}()
+
 	// waits for ready
 	go func() {
 		defer close(back.Ready)

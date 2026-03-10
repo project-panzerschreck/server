@@ -3,6 +3,7 @@ package server
 import (
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"image"
 	_ "image/gif"
@@ -16,6 +17,7 @@ import (
 	"github.com/openai/openai-go/v2"
 	"github.com/openai/openai-go/v2/packages/ssestream"
 	ollamatypes "github.com/wk-y/rama-swap/server/ollama-types"
+	"github.com/wk-y/rama-swap/server/scheduler"
 )
 
 func (s *Server) ollamaTags(w http.ResponseWriter, r *http.Request) {
@@ -102,9 +104,16 @@ func (s *Server) ollamaChat(w http.ResponseWriter, r *http.Request) {
 
 	backendModel, err := s.scheduler.Lock(r.Context(), model)
 	if err != nil {
+		if errors.Is(err, scheduler.ErrModelLoading) {
+			w.Header().Set("Retry-After", "10")
+			w.WriteHeader(http.StatusServiceUnavailable)
+			w.Write([]byte("model is loading, please retry\n"))
+			return
+		}
 		log.Printf("Failed to start model %s: %v\n", model, err)
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("E_MODEL_START"))
+		w.Write([]byte("E_MODEL_START\n"))
+		return
 	}
 	defer s.scheduler.Unlock(backendModel)
 

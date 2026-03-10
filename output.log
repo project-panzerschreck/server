@@ -1,0 +1,30 @@
+2026/03/09 20:57:45 Listening on http://0.0.0.0:4917
+2026/03/09 20:57:45 Device tracker listening on http://0.0.0.0:50055
+2026/03/09 20:57:45 New announce from 192.168.1.187:51320
+2026/03/09 20:57:45 New announce from 192.168.1.190:53898
+2026/03/09 20:57:46 New announce from 192.168.1.189:44013
+2026/03/09 20:57:47 /api/chat
+2026/03/09 20:57:47 Failed to start model unsloth/Qwen3-0.6B-GGUF:UD-Q4_K_XL: nonexistent model
+2026/03/09 20:57:55 Tracker node 192.168.1.187:51320 reachability changed: true
+2026/03/09 20:57:55 Tracker node 192.168.1.190:53898 reachability changed: true
+2026/03/09 20:57:56 Tracker node 192.168.1.189:44013 reachability changed: true
+2026/03/09 20:58:15 Reannounce from 192.168.1.187:51320
+2026/03/09 20:58:16 Reannounce from 192.168.1.190:53898
+2026/03/09 20:58:16 Reannounce from 192.168.1.189:44013
+2026/03/09 20:58:46 Reannounce from 192.168.1.189:44013
+2026/03/09 20:58:47 Reannounce from 192.168.1.187:51320
+2026/03/09 20:58:48 Reannounce from 192.168.1.190:53898
+2026/03/09 20:59:17 Reannounce from 192.168.1.189:44013
+2026/03/09 20:59:17 Reannounce from 192.168.1.187:51320
+2026/03/09 20:59:19 Reannounce from 192.168.1.190:53898
+2026/03/09 20:59:47 Reannounce from 192.168.1.187:51320
+2026/03/09 20:59:47 Reannounce from 192.168.1.189:44013
+2026/03/09 20:59:49 Reannounce from 192.168.1.190:53898
+2026/03/09 20:59:56 /api/tags
+2026/03/09 20:59:56 Failed to inspect full details of model hf:unsloth/Qwen3-0.6B-GGUF:UD-Q4_K_XL: failed to parse inspect output: EOF
+2026/03/09 21:00:17 Reannounce from 192.168.1.189:44013
+2026/03/09 21:00:17 Reannounce from 192.168.1.187:51320
+2026/03/09 21:00:19 Reannounce from 192.168.1.190:53898
+2026/03/09 21:00:47 Reannounce from 192.168.1.187:51320
+2026/03/09 21:00:47 Reannounce from 192.168.1.189:44013
+signal: terminated

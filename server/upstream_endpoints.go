@@ -1,10 +1,13 @@
 package server
 
 import (
+	"errors"
 	"fmt"
 	"html"
 	"log"
 	"net/http"
+
+	"github.com/wk-y/rama-swap/server/scheduler"
 )
 
 func (s *Server) serveUpstream(w http.ResponseWriter, r *http.Request) {
@@ -18,13 +21,18 @@ func (s *Server) serveUpstream(w http.ResponseWriter, r *http.Request) {
 
 	backend, err := s.scheduler.Lock(r.Context(), name)
 	if err != nil {
+		if errors.Is(err, scheduler.ErrModelLoading) {
+			w.Header().Set("Retry-After", "10")
+			w.WriteHeader(http.StatusServiceUnavailable)
+			w.Write([]byte("model is loading, please retry\n"))
+			return
+		}
 		log.Println(err)
+		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(fmt.Sprint(err)))
 		return
 	}
 	defer s.scheduler.Unlock(backend)
-
-	<-backend.Ready
 
 	r.URL.Path = "/" + r.PathValue("rest")
 	backend.Proxy().ServeHTTP(w, r)

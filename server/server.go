@@ -3,6 +3,7 @@ package server
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -75,7 +76,14 @@ func (s *Server) proxyEndpoint(w http.ResponseWriter, r *http.Request, modelFind
 
 	backend, err := s.scheduler.Lock(r.Context(), model)
 	if err != nil {
+		if errors.Is(err, scheduler.ErrModelLoading) {
+			w.Header().Set("Retry-After", "10")
+			w.WriteHeader(http.StatusServiceUnavailable)
+			w.Write([]byte("model is loading, please retry\n"))
+			return
+		}
 		log.Printf("Failed to start model %s: %v\n", model, err)
+		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 	defer s.scheduler.Unlock(backend)

@@ -13,6 +13,10 @@ type DeviceDebugData struct {
 	KvBufferMiB      float64 `json:"kv_mib"`
 	ComputeBufferMiB float64 `json:"compute_mib"`
 	TotalMiB         float64 `json:"total_mib"`
+	PhoneModel       string  `json:"phone_model"`
+	Battery          float64 `json:"battery"`
+	Temperature      float64 `json:"temperature"`
+	MaxSize          int64   `json:"max_size"`
 }
 
 type DebugData struct {
@@ -30,6 +34,26 @@ func (s *Server) handleDebugData(w http.ResponseWriter, r *http.Request) {
 		ConnectedDevices: s.scheduler.GetTracker().GetServers(),
 	}
 
+	details := s.scheduler.GetTracker().GetServerDetails()
+
+	for _, name := range data.ConnectedDevices {
+		var phoneModel string
+		var battery, temp float64
+		var maxSize int64
+		if node, ok := details[name]; ok {
+			phoneModel = node.Model
+			battery = node.Battery
+			temp = node.Temperature
+			maxSize = node.MaxSize
+		}
+		data.Devices[name] = DeviceDebugData{
+			PhoneModel:  phoneModel,
+			Battery:     battery,
+			Temperature: temp,
+			MaxSize:     maxSize,
+		}
+	}
+
 	snap, _ := s.scheduler.GetDebugInfo()
 
 	if snap.Model != "" {
@@ -39,12 +63,12 @@ func (s *Server) handleDebugData(w http.ResponseWriter, r *http.Request) {
 		data.EvalTokensPerSec = snap.EvalTokensPerSec
 
 		for name, d := range snap.Devices {
-			data.Devices[name] = DeviceDebugData{
-				ModelBufferMiB:   d.ModelBufferMiB,
-				KvBufferMiB:      d.KvBufferMiB,
-				ComputeBufferMiB: d.ComputeBufferMiB,
-				TotalMiB:         d.ModelBufferMiB + d.KvBufferMiB + d.ComputeBufferMiB,
-			}
+			devData := data.Devices[name]
+			devData.ModelBufferMiB = d.ModelBufferMiB
+			devData.KvBufferMiB = d.KvBufferMiB
+			devData.ComputeBufferMiB = d.ComputeBufferMiB
+			devData.TotalMiB = d.ModelBufferMiB + d.KvBufferMiB + d.ComputeBufferMiB
+			data.Devices[name] = devData
 		}
 	}
 
@@ -238,10 +262,17 @@ polling_rate: 1500ms
                     const pKv = ((stats.kv_mib || 0) / maxMib * 100).toFixed(1);
                     const pCmp = ((stats.compute_mib || 0) / maxMib * 100).toFixed(1);
 
+                    const devModel = stats.phone_model || (n === 'CPU' ? 'HOST_CPU' : n);
+                    const statsHtml = n !== 'CPU' ? 
+                        '<span class="device-meta">Batt: ' + (stats.battery>0?stats.battery.toFixed(0)+'%':'N/A') + 
+                        ' | Temp: ' + (stats.temperature>0?stats.temperature.toFixed(1)+'°C':'N/A') +
+                        ' | Max: ' + (stats.max_size>0?mib(stats.max_size/(1024*1024)):'N/A') + '</span>' 
+                        : '';
+
                     html += '<div class="device-box">' +
                         '<div class="device-header">' +
-                            '<span class="device-name">' + (n === 'CPU' ? 'HOST_CPU' : n) + '</span>' +
-                            '<span class="device-meta">' + mib(total) + '</span>' +
+                            '<span class="device-name">' + devModel + (stats.phone_model ? ' (' + n + ')' : '') + '</span>' +
+                            '<div>' + statsHtml + ' <span class="device-meta" style="margin-left:10px;color:#eee;">' + mib(total) + '</span></div>' +
                         '</div>' +
                         '<div class="bar-container">' +
                             '<div class="bar bar-model" style="width:' + pModel + '%"></div>' +

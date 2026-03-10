@@ -39,6 +39,12 @@ type backend struct {
 	EvalTokensPerSec   float64
 }
 
+func (b *backend) Err() error {
+	b.RLock()
+	defer b.RUnlock()
+	return b.err
+}
+
 func newBackend(model string) *backend {
 	return &backend{
 		Model:   model,
@@ -90,9 +96,20 @@ func (b *backend) WithClient(callback func(openai.Client) error) error {
 func (b *backend) Proxy() *httputil.ReverseProxy {
 	return &httputil.ReverseProxy{
 		Rewrite: func(pr *httputil.ProxyRequest) {
+			b.portLock.RLock()
+			port := b.port
+			b.portLock.RUnlock()
+
+			// Copy path, query, fragment, etc. from the inbound request first,
+			// then overwrite scheme and host so they point at the local backend.
 			*pr.Out.URL = *pr.In.URL
-			pr.Out.URL.Host = fmt.Sprintf("127.0.0.1:%v", b.port)
 			pr.Out.URL.Scheme = "http"
+			if port == 0 {
+				// Safety measure: produce a host that fails predictably.
+				pr.Out.URL.Host = "127.0.0.1:0-dead-backend"
+			} else {
+				pr.Out.URL.Host = fmt.Sprintf("127.0.0.1:%v", port)
+			}
 		},
 	}
 }
