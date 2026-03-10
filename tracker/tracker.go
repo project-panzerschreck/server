@@ -49,6 +49,7 @@ func (t *Tracker) AddRoutes(mux *http.ServeMux) {
 }
 
 func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
+	log.Printf("Announce request from %s", r.Host)
 	type response struct {
 		Interval int `json:"interval"`
 	}
