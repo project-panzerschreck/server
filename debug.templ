@@ -2,6 +2,7 @@ package main
 
 import "github.com/wk-y/rama-swap/tracker"
 import "time"
+import "math"
 
 templ debugPage(clients []tracker.RpcServerInfo, t time.Time) {
 	<html>
@@ -24,10 +25,34 @@ templ debugPage(clients []tracker.RpcServerInfo, t time.Time) {
 						<tr>
 							<td>{ client.Ip }</td>
 							<td>{ client.Port }</td>
-							<td>{ client.HardwareModel }</td>
-							<td>{ client.MaxSize }</td>
-							<td>{ client.Battery }</td>
-							<td>{ client.Temperature }</td>
+							<td>
+								if client.HardwareModel == "" {
+									?
+								} else {
+									{ client.HardwareModel }
+								}
+							</td>
+							<td>
+								if client.MaxSize < 0 {
+									?
+								} else {
+									{ client.MaxSize }
+								}
+							</td>
+							<td>
+								if math.IsNaN(client.Battery) {
+									?
+								} else {
+									{ client.Battery }
+								}
+							</td>
+							<td>
+								if math.IsNaN(client.Temperature) {
+									?
+								} else {
+									{ client.Temperature }
+								}
+							</td>
 						</tr>
 					}
 				</tbody>
