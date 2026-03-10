@@ -6,7 +6,7 @@ import "time"
 templ debugPage(clients []tracker.RpcServerInfo, t time.Time) {
 	<html>
 		<body>
-			<p>Data as of { t.UTC().Format("2006-01-02 15:04:05 -0700 MST") }</p>
+			<p>Data as of { t.UTC().Format("2006-01-02 15:04:05") } UTC</p>
 			<p>There are { len(clients) } clients connected.</p>
 			<table>
 				<thead>
