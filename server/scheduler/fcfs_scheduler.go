@@ -164,7 +164,7 @@ func (f *fcfsScheduler) startBackend(modelName string, rpcNodes []llama.RpcNode)
 	cmd.Stderr = os.Stderr
 
 	switch runtime.GOOS {
-	case "linux":
+	case "linux", "darwin":
 		// By default, Go sends SIGKILL, which causes ramalama to exit without stopping the container.
 		// Instead, let ramalama gracefully exit by sending SIGINT
 		cmd.Cancel = func() error {
