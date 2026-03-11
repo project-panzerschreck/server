@@ -63,4 +63,8 @@ views {
         include phone.*
         include linux_client.*
     }
+
+    view high_level {
+        include *
+    }
 }
