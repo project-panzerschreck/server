@@ -12,6 +12,7 @@ import (
 
 	"github.com/wk-y/rama-swap/llama"
 	"github.com/wk-y/rama-swap/microservices/dashboard"
+	"github.com/wk-y/rama-swap/microservices/homepage"
 	"github.com/wk-y/rama-swap/server"
 	"github.com/wk-y/rama-swap/server/scheduler"
 	"github.com/wk-y/rama-swap/tracker"
@@ -44,6 +45,8 @@ func main() {
 	server := server.NewServer(ramalama, scheduler)
 	dashboard := dashboard.NewDashboard(tracker)
 	dashboard.RegisterHandlers(mux)
+	homepage := homepage.NewHomepage()
+	homepage.RegisterHandlers(mux)
 
 	server.ModelNameMangler = func(s string) string {
 		return strings.ReplaceAll(s, "/", "_")
