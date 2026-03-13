@@ -1,15 +1,16 @@
 package tracker
 
 import (
+	"database/sql"
 	"encoding/json"
 	"log"
 	"math"
 	"net/http"
-	"sort"
 	"strconv"
 	"strings"
-	"sync"
 	"time"
+
+	"github.com/wk-y/rama-swap/database"
 )
 
 // the number of seconds after which an RPC server is removed from the list
@@ -19,8 +20,7 @@ const expiryDuration = time.Second * 30
 const interval = time.Second * 10
 
 type Tracker struct {
-	sync.RWMutex
-	RpcServers map[string]clientInfo
+	db *sql.DB
 }
 
 type clientInfo struct {
@@ -40,7 +40,7 @@ type RpcServerInfo struct {
 
 func NewTracker() *Tracker {
 	return &Tracker{
-		RpcServers: make(map[string]clientInfo),
+		db: database.GetDB(),
 	}
 }
 
@@ -92,46 +92,22 @@ func (t *Tracker) Announce(w http.ResponseWriter, r *http.Request) {
 
 	// todo: validate ip
 
-	clientId := ip // + ":" + port
-
-	func() {
-		t.Lock()
-		defer t.Unlock()
-
-		// avoid duplicate timers
-		if existingTimer := t.RpcServers[clientId].expiryTimer; existingTimer != nil {
-			existingTimer.Stop()
-			log.Printf("Reannounce from %s", clientId)
-		} else {
-			log.Printf("New announce from %s", clientId)
-		}
-
-		announceTime := time.Now()
-
-		t.RpcServers[clientId] = clientInfo{
-			RpcServerInfo: RpcServerInfo{
-				LastSeen:      announceTime,
-				Ip:            ip,
-				Port:          portNum,
-				HardwareModel: hardwareModel,
-				MaxSize:       maxSize,
-				Battery:       battery,
-				Temperature:   temperature,
-			},
-			expiryTimer: time.AfterFunc(expiryDuration, func() {
-				t.Lock()
-				defer t.Unlock()
-
-				// there's a possible race condition if the client announces just as the timer expires,
-				// preventing the timer from being stopped. To prevent that, we verify that the last seen time
-				// has not been changed.
-				if t.RpcServers[clientId].LastSeen.Equal(announceTime) {
-					delete(t.RpcServers, clientId)
-					log.Printf("Removed %s from tracker", clientId)
-				}
-			}),
-		}
-	}()
+	_, err = t.db.Exec(`INSERT OR REPLACE INTO nodes
+(ip, port, last_seen, hardware_model, max_size, battery, temperature)
+VALUES (?, ?, ?, ?, ?, ?, ?)`,
+		ip,
+		portNum,
+		time.Now(),
+		hardwareModel,
+		maxSize,
+		battery,
+		temperature,
+	)
+	if err != nil {
+		log.Printf("Failed to update node: %v", err)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
 
 	// respond
 	w.Header().Add("Content-Type", "application/json")
@@ -163,23 +139,25 @@ func (t *Tracker) ListServers(w http.ResponseWriter, r *http.Request) {
 }
 
 func (t *Tracker) GetServers() []RpcServerInfo {
-	t.RLock()
-	defer t.RUnlock()
+	now := time.Now()
+	expiryCutoff := now.Add(-expiryDuration)
 
-	servers := make([]RpcServerInfo, 0, len(t.RpcServers))
-	for _, server := range t.RpcServers {
-		servers = append(servers, server.RpcServerInfo)
+	rows, err := t.db.Query(`SELECT ip, port, last_seen, hardware_model, max_size, ifnull(battery, 'NaN'), ifnull(temperature, 'NaN') FROM nodes WHERE last_seen > ?`, expiryCutoff)
+	if err != nil {
+		log.Printf("Failed to query nodes: %v", err)
+		return nil
 	}
+	defer rows.Close()
 
-	sort.Slice(servers, func(i, j int) bool {
-		if servers[i].Ip < servers[j].Ip {
-			return true
+	var servers []RpcServerInfo
+	for rows.Next() {
+		var server RpcServerInfo
+		if err := rows.Scan(&server.Ip, &server.Port, &server.LastSeen, &server.HardwareModel, &server.MaxSize, &server.Battery, &server.Temperature); err != nil {
+			log.Printf("Failed to scan node: %v", err)
+			continue
 		}
-		if servers[i].Ip > servers[j].Ip {
-			return false
-		}
-		return servers[i].Port < servers[j].Port
-	})
+		servers = append(servers, server)
+	}
 
 	return servers
 }
