@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"net/http"
 
+	"github.com/wk-y/rama-swap/database"
 	"github.com/wk-y/rama-swap/microservices"
 	_ "modernc.org/sqlite"
 )
@@ -17,19 +18,8 @@ type InstanceInfo struct {
 	port int
 }
 
-//go:embed schema.sql
-var initializeSql string
-
 func NewInferenceServerManager() *InferenceServerManager {
-	db, err := sql.Open("sqlite", ":memory:")
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = db.Exec(initializeSql)
-	if err != nil {
-		panic(err)
-	}
+	db := database.GetDB()
 
 	return &InferenceServerManager{
 		db: db,

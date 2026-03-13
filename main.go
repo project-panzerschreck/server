@@ -13,6 +13,7 @@ import (
 	"github.com/wk-y/rama-swap/llama"
 	"github.com/wk-y/rama-swap/microservices/dashboard"
 	"github.com/wk-y/rama-swap/microservices/homepage"
+	ism "github.com/wk-y/rama-swap/microservices/inference-server-manager"
 	"github.com/wk-y/rama-swap/server"
 	"github.com/wk-y/rama-swap/server/scheduler"
 	"github.com/wk-y/rama-swap/tracker"
@@ -42,6 +43,8 @@ func main() {
 	tracker := tracker.NewTracker()
 	tracker.AddRoutes(mux)
 	scheduler := scheduler.NewFcfsScheduler(ramalama, 49170, *args.IdleTimeout, tracker)
+	inferenceServerManager := ism.NewInferenceServerManager()
+	inferenceServerManager.RegisterHandlers(mux)
 	server := server.NewServer(ramalama, scheduler)
 	dashboard := dashboard.NewDashboard(tracker)
 	dashboard.RegisterHandlers(mux)
